@@ -15,8 +15,6 @@ $conda_dev_dir = "$site_packages_dir\.conda-dev";
 
 if (-not $(Test-Path "$conda_dev_dir")) {
     mkdir $conda_dev_dir;
-} else {
-    echo "$conda_dev_dir already exists"
 }
 
 $module_dir = "$site_packages_dir\$module"

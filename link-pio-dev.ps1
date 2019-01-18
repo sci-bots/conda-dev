@@ -1,20 +1,21 @@
-$package = $args[0]
+$package = $args[0];
+$module = $args[1];
 
-if (-not $args[0]) {
+if ($(-not $package) -or $(-not $module)) {
   $script = "$($MyInvocation.MyCommand)";
-  echo "usage: $script <package name>";
+  echo "usage: $script <package name> <Python module name>";
   echo "";
   echo "example:";
   echo "";
-  echo "  $script base-node-rpc";
+  echo "  $script base-node-rpc base_node_rpc";
   exit -1;
 }
+
+link-py-dev $module;
 
 foreach ($path_i in "$env:CONDA_PREFIX\Lib\site-packages\.conda-dev", "$env:CONDA_PREFIX\share\platformio\include\.conda-dev", "$env:CONDA_PREFIX\share\platformio\bin\.conda-dev") {
     if (-not $(Test-Path $path_i)) {
         mkdir $path_i;
-    } else {
-        echo "$path_i already exists"
     }
 }
 
