@@ -17,13 +17,11 @@ build:
   script:
     # Copy scripts to Conda scripts directory
     - python -c
-        "import os.path; import os; import shutil;
+        "import os.path; import os; import shutil; import glob;
         install_dir = os.path.join(os.environ['CONDA_PREFIX'], 'Scripts');
         src_dir = os.environ['SRC_DIR'];
-        shutil.copy2(os.path.join(src_dir, 'link-pio-dev.ps1'),
-                     os.path.join(install_dir, 'link-pio-dev.ps1'));
-        shutil.copy2(os.path.join(src_dir, 'link-py-dev.ps1'),
-                     os.path.join(install_dir, 'link-py-dev.ps1'));
+        [shutil.copy2(p, os.path.join(install_dir, os.path.basename(p)))
+         for p in glob.glob(os.path.join(src_dir, '*.ps1'))];
         "
 
 requirements:
