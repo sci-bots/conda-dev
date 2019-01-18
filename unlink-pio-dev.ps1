@@ -50,7 +50,7 @@ if ($($(Get-Item -Path $bin_link -Force).LinkType -eq "Junction")) {
     cmd /C rmdir $bin_link;
     # Restore existing installed library header directory.
     mv $bin_dev $bin_link;
-    echo "Restored ``$lib_dev`` -> ``$lib_link``";
+    echo "Restored ``$bin_dev`` -> ``$bin_link``";
   } else {
     echo "warning: skipping $bin_name since $bin_dev (i.e., copy of originally installed firmware package) does not exist.";
     continue;
