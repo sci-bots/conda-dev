@@ -1,0 +1,1 @@
+src/conda_dev/_version.py export-subst

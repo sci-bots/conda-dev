@@ -1,0 +1,39 @@
+{% if GIT_DESCRIBE_NUMBER > '0' %}
+{% set GIT_VERSION = GIT_DESCRIBE_TAG[1:] + '.post' + GIT_DESCRIBE_NUMBER %}
+{% else %}
+{% set GIT_VERSION = GIT_DESCRIBE_TAG[1:] %}
+{% endif %}
+# source will be downloaded prior to filling in jinja templates
+# Example assumes that this folder has setup.py in it
+source:
+  git_url: ../
+
+package:
+  name: conda-dev
+  version: {{ GIT_VERSION }}
+
+build:
+  noarch: generic
+  script:
+    # Copy scripts to Conda scripts directory
+    - python -c
+        "import os.path; import os; import shutil;
+        install_dir = os.path.join(os.environ['CONDA_PREFIX'], 'Scripts');
+        src_dir = os.environ['SRC_DIR'];
+        shutil.copy2(os.path.join(src_dir, 'link-pio-dev.ps1'),
+                     os.path.join(install_dir, 'link-pio-dev.ps1'));
+        shutil.copy2(os.path.join(src_dir, 'link-py-dev.ps1'),
+                     os.path.join(install_dir, 'link-py-dev.ps1'));
+        "
+
+requirements:
+  build:
+    - python
+
+test:
+  imports:
+    - conda_dev
+
+about:
+  home: https://github.com/sci-bots/{{ PKG_NAME }}
+  license: BSD
