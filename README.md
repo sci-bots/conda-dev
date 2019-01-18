@@ -6,6 +6,7 @@ Powershell scripts to link/unlink working copies of Conda packages during develo
 <!-- vim-markdown-toc GFM -->
 
 * [Install](#install)
+    * [Known issues](#known-issues)
 * [Usage](#usage)
     * [Python module](#python-module)
     * [PlatformIO project with Python module](#platformio-project-with-python-module)
@@ -26,6 +27,14 @@ The latest [`conda-dev` release][3] is available as a
 To install `conda-dev` in an **activated Conda environment**, run:
 
     conda install -c sci-bots -c conda-forge conda-dev
+
+### Known issues
+
+By default, Conda activation within Powershell environment does not work.  To
+add Powershell support, install the `pscondaenvs` in the **_root_**
+environment:
+
+    conda install -c pscondaenvs pscondaenvs
 
 -------------------------------------------------------------------------------
 
