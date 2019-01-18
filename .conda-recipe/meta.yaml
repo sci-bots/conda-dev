@@ -30,10 +30,6 @@ requirements:
   build:
     - python
 
-test:
-  imports:
-    - conda_dev
-
 about:
   home: https://github.com/sci-bots/{{ PKG_NAME }}
   license: BSD
