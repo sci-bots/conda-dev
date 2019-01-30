@@ -30,11 +30,19 @@ To install `conda-dev` in an **activated Conda environment**, run:
 
 ### Known issues
 
-By default, Conda activation within Powershell environment does not work.  To
-add Powershell support, install the `pscondaenvs` in the **_root_**
-environment:
+For Conda versions prior to 4.6, Conda activation within a Powershell
+environment does not work by default.  To add Powershell support, install the
+`pscondaenvs` in the **_root_** environment:
 
     conda install -c pscondaenvs pscondaenvs
+
+**As of Conda 4.6, [Powershell is officially supported][conda-4.6]** and may be
+initialized by executing the following command within the activated Conda
+environment:
+
+    conda init powershell
+
+[conda-4.6]: https://www.anaconda.com/blog/developer-blog/conda-4-6-release/
 
 -------------------------------------------------------------------------------
 
