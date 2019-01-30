@@ -85,12 +85,14 @@ $ link-pio-dev foo-bar foo_bar
 Junction created for C:\Users\chris\mc2-x86\envs\db-dev2\Lib\site-packages\foo <<===>> foo
 Junction created for C:\Users\chris\mc2-x86\envs\db-dev2\share\platformio\include\FooBar <<===>> lib\FooBar
 Junction created for C:\Users\chris\mc2-x86\envs\db-dev2\share\platformio\include\Wire <<===>> lib\Wire
+Hardlink created for .pioenvs\platformio.ini <<===>> platformio.ini
 Junction created for C:\Users\chris\mc2-x86\envs\db-dev2\share\platformio\bin\foo <<===>> .pioenvs
 $ unlink-pio-dev foo-bar foo_bar
 Restored `C:\Users\chris\mc2-x86\envs\db-dev2\share\platformio\include\.conda-dev\FooBar` -> `C:\Users\chris\mc2-x86\envs\db-dev2\share\platformio\include\FooBar`
 Restored `C:\Users\chris\mc2-x86\envs\db-dev2\share\platformio\include\.conda-dev\FIFO` -> `C:\Users\chris\mc2-x86\envs\db-dev2\share\platformio\include\FIFO`
 Restored `C:\Users\chris\mc2-x86\envs\db-dev2\share\platformio\include\.conda-dev\Wire` -> `C:\Users\chris\mc2-x86\envs\db-dev2\share\platformio\include\Wire`
 Restored `C:\Users\chris\mc2-x86\envs\db-dev2\share\platformio\bin\.conda-env\foo-bar` -> `C:\Users\chris\mc2-x86\envs\db-dev2\share\platformio\bin\foo-bar`
+Removed `.pioenvs\platformio.ini -> platformio.ini` link
 Restored `C:\Users\chris\mc2-x86\envs\db-dev2\Lib\site-packages\.conda-dev\foo_bar` -> `C:\Users\chris\mc2-x86\envs\db-dev2\Lib\site-packages\foo_bar`
 ```
 
