@@ -23,10 +23,13 @@ foreach ($lib in $(dir lib\*)) {
   $lib_name = $lib.Name;
   $lib_dev = "$include_dev\$lib_name";
   $lib_link = "$include\$lib_name";
-  if ($($(Get-Item -Path $lib_link -Force).LinkType -eq "Junction")) {
+  if (-not (Test-Path $lib_link) -or
+      ($(Get-Item -Path $lib_link -Force).LinkType -eq "Junction")) {
     if (Test-Path $lib_dev) {
-      # Delete development link.
-      cmd /C rmdir $lib_link;
+      if (Test-Path $lib_link) {
+        # Delete development link.
+        cmd /C rmdir $lib_link;
+      }
       # Restore existing installed library header directory.
       mv $lib_dev $lib_link;
       echo "Restored ``$lib_dev`` -> ``$lib_link``";
@@ -44,10 +47,13 @@ foreach ($lib in $(dir lib\*)) {
 $bin_name = $package;
 $bin_link = "$firmware\$bin_name";
 $bin_dev = "$firmware_dev\$bin_name";
-if ($($(Get-Item -Path $bin_link -Force).LinkType -eq "Junction")) {
+if ((-not (Test-Path $bin_link)) -or
+    ($(Get-Item -Path $bin_link -Force).LinkType -eq "Junction")) {
   if (Test-Path $bin_dev) {
-    # Delete development link.
-    cmd /C rmdir $bin_link;
+    if (Test-Path $bin_link) {
+        # Delete development link.
+        cmd /C rmdir $bin_link;
+    }
     # Restore existing installed library header directory.
     mv $bin_dev $bin_link;
     echo "Restored ``$bin_dev`` -> ``$bin_link``";

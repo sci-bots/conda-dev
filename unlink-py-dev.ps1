@@ -16,10 +16,13 @@ $site_packages_dev = "$site_packages\.conda-dev";
 ### Restore originally installed compiled firmwares
 $module_link = "$site_packages\$module_name";
 $module_dev = "$site_packages_dev\$module_name";
-if ($($(Get-Item -Path $module_link -Force).LinkType -eq "Junction")) {
+if ((-not (Test-Path $module_link)) -or
+    ($(Get-Item -Path $module_link -Force).LinkType -eq "Junction")) {
   if (Test-Path $module_dev) {
-    # Delete development link.
-    cmd /C rmdir $module_link;
+    if (Test-Path $module_link) {
+        # Delete development link.
+        cmd /C rmdir $module_link;
+    }
     # Restore existing installed library header directory.
     mv $module_dev $module_link;
     echo "Restored ``$module_dev`` -> ``$module_link``";
