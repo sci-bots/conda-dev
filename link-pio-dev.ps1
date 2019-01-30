@@ -13,7 +13,10 @@ if ($(-not $package) -or $(-not $module)) {
 
 link-py-dev $module;
 
-foreach ($path_i in "$env:CONDA_PREFIX\Lib\site-packages\.conda-dev", "$env:CONDA_PREFIX\share\platformio\include\.conda-dev", "$env:CONDA_PREFIX\share\platformio\bin\.conda-dev") {
+foreach ($path_i in
+         "$env:CONDA_PREFIX\Lib\site-packages\.conda-dev",
+         "$env:CONDA_PREFIX\share\platformio\include\.conda-dev",
+         "$env:CONDA_PREFIX\share\platformio\bin\.conda-dev") {
     if (-not $(Test-Path $path_i)) {
         mkdir $path_i;
     }
@@ -45,5 +48,8 @@ If (Test-Path "$env:CONDA_PREFIX\share\platformio\bin\$package") {
   } else {
     mv "$env:CONDA_PREFIX\share\platformio\bin\$package" $conda_dev_path;
   }
+}
+If (-not (Test-Path .pioenvs\platformio.ini)) {
+    cmd /C mklink /H .pioenvs\platformio.ini platformio.ini
 }
 cmd /C mklink /J "$env:CONDA_PREFIX\share\platformio\bin\$package" .pioenvs

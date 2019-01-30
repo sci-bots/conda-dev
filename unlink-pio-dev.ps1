@@ -60,4 +60,9 @@ if ($($(Get-Item -Path $bin_link -Force).LinkType -eq "Junction")) {
   continue;
 }
 
+if ($($(Get-Item -Path .pioenvs\platformio.ini -Force).LinkType -eq "HardLink")) {
+    del .pioenvs\platformio.ini
+    echo 'Removed `.pioenvs\platformio.ini -> platformio.ini` link';
+}
+
 unlink-py-dev $module;
