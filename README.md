@@ -10,6 +10,8 @@ Powershell scripts to link/unlink working copies of Conda packages during develo
 * [Usage](#usage)
     * [Python module](#python-module)
     * [PlatformIO project with Python module](#platformio-project-with-python-module)
+    * [List all Python development projects](#list-all-python-development-projects)
+    * [List all PlatformIO development projects](#list-all-platformio-development-projects)
 * [How it works](#how-it-works)
 * [License](#license)
 * [Contributors](#contributors)
@@ -102,6 +104,44 @@ Restored `C:\Users\chris\mc2-x86\envs\db-dev2\share\platformio\include\.conda-de
 Restored `C:\Users\chris\mc2-x86\envs\db-dev2\share\platformio\bin\.conda-env\foo-bar` -> `C:\Users\chris\mc2-x86\envs\db-dev2\share\platformio\bin\foo-bar`
 Removed `.pioenvs\platformio.ini -> platformio.ini` link
 Restored `C:\Users\chris\mc2-x86\envs\db-dev2\Lib\site-packages\.conda-dev\foo_bar` -> `C:\Users\chris\mc2-x86\envs\db-dev2\Lib\site-packages\foo_bar`
+```
+
+### List all Python development projects
+
+To list the names of all development Python modules that are linked into the
+`site-packages` directory of the active Conda environment, run the following:
+
+```sh
+list-py-dev
+```
+
+For example:
+
+```sh
+$ list-py-dev
+# Linked Python development modules:
+
+    foo_bar -> D:\Documents\GitHub\foo-bar\foo_bar
+    foo -> D:\Documents\GitHub\foo\foo
+```
+
+### List all PlatformIO development projects
+
+To list all PlatformIO projects linked into the active Conda environment, run
+the following:
+
+```sh
+list-pio-dev
+```
+
+For example:
+
+```sh
+$ list-pio-dev
+# Linked PlatformIO development projects:
+
+    foo-bar -> D:\Documents\GitHub\foo-bar\.pioenvs
+    foo -> D:\Documents\GitHub\foo\.pioenvs
 ```
 
 -------------------------------------------------------------------------------
